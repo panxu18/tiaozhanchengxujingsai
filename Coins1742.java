@@ -10,7 +10,7 @@ public class Coins1742 {
         new Coins1742().solve();
     }
 
-    int[][] dp = new int[2][100010];
+    int[] dp = new int[100010];
     int n,m;
     int[] as = new int[110];
     int[] cs = new int[110];
@@ -33,26 +33,29 @@ public class Coins1742 {
         out.flush();
     }
 
-    private int getAns() {
+    private int getAns(){
         Arrays.fill(used, false);
-        Arrays.fill(dp[1], -1); // 边界条件
-        dp[1][0] = 0;
+        Arrays.fill(dp,-1);
+        dp[0] = 0;
         int cnt = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= m; j++) {
-                if (dp[(i + 1) & 1][j] >= 0) {
-                    dp[i & 1][j] = cs[i];
-                } else if (j >= as[i] && dp[i & 1][j - as[i]] > 0) {
-                    dp[i & 1][j] = dp[i & 1][j - as[i]] - 1;
-                } else {
-                    dp[i & 1][j] = -1;
-                }
-                if (dp[i & 1][j] >= 0 && used[j] == false) {
+                if (dp[j] >= 0) {
+                    dp[j] = cs[i];
                     used[j] = true;
-                    cnt++;
+                } else if (j >= as[i] && dp[j - as[i]] > 0) {
+                    dp[j] = dp[j - as[i]] - 1;
+                    used[j] = true;
+                } else {
+                    dp[j] = -1;
                 }
             }
         }
-        return cnt - 1;
+        for (int i = 1; i <= m; i++) {
+            if (used[i]) {
+                cnt++;
+            }
+        }
+        return cnt;
     }
 }
