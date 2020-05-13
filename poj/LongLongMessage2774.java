@@ -1,4 +1,4 @@
-package tiaozhanchengxujingsai;
+package tiaozhanchengxujingsai.poj;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class LongLongMessage {
+public class LongLongMessage2774 {
     public static void main(String[] args) {
-        new LongLongMessage().solve();
+        new LongLongMessage2774().solve();
     }
 
     String tempStr;
