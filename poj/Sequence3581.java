@@ -1,14 +1,14 @@
-package tiaozhanchengxujingsai;
+package tiaozhanchengxujingsai.poj;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class Sequence {
+public class Sequence3581 {
 
     public static void main(String[] args) {
-        new Sequence().solve();
+        new Sequence3581().solve();
     }
 
     private void solve() {
@@ -108,43 +108,6 @@ public class Sequence {
             long c = arr[i];
             arr[i++] = arr[j];
             arr[j--] = c;
-        }
-    }
-
-    void mergeSort(int[] src,
-                   int[] dest,
-                   int low,
-                   int high,
-                   int off) {
-        int length = high - low;
-
-        // Insertion sort on smallest arrays
-        if (length < 7) {
-            for (int i=low; i<high; i++)
-                for (int j=i; j>low &&
-                        compareSa(dest[j-1], dest[j])>0; j--)
-                    swap(dest, j, j-1);
-            return;
-        }
-
-        // Recursively sort halves of dest into src
-        int destLow  = low;
-        int destHigh = high;
-        low  += off;
-        high += off;
-        int mid = (low + high) >>> 1;
-        mergeSort(dest, src, low, mid, -off);
-        mergeSort(dest, src, mid, high, -off);
-
-        if (compareSa(src[mid - 1], src[mid]) <= 0) {
-            System.arraycopy(src, low, dest, destLow, length);
-            return;
-        }
-        for(int i = destLow, p = low, q = mid; i < destHigh; i++) {
-            if (q >= high || p < mid && compareSa(src[p], src[q])<=0)
-                dest[i] = src[p++];
-            else
-                dest[i] = src[q++];
         }
     }
 
