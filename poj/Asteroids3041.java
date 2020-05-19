@@ -27,17 +27,11 @@ public class Asteroids3041 {
         for (int i = 0; i < M; i++) {
             int r = (int) readDouble();
             int c = (int) readDouble();
-            addEdges(r,c+N);
+            head[r] = new Edge(c+N, head[r]);
         }
 
         out.println(binaryMatch());
         out.flush();
-
-    }
-
-    private void addEdges(int a, int b) {
-        head[a] = new Edge(b, head[a]);
-        head[b] = new Edge(a, head[b]);
 
     }
 
