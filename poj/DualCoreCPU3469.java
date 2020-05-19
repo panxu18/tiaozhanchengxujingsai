@@ -43,18 +43,13 @@ public class DualCoreCPU3469 {
             int u = (int) readDouble();
             int v = (int) readDouble();
             int c = (int) readDouble();
-            addEdges2(u, v, c); // 不能使用重边
+            addEdges(u,v,c);
+            addEdges(v,u,c);
         }
         isap();
         out.println(ans);
         out.flush();
 
-    }
-
-    private void addEdges2(int u, int v, int c) {
-        head[u] = new Edge(v, c, head[u], null);
-        head[v] = new Edge(u, c, head[v], head[u]);
-        head[u].rEdge = head[v];
     }
 
     int[] level = new int[MAXN];
